@@ -241,7 +241,7 @@ export default function GroupsPage() {
                                     <CheckCircle2 className="w-6 h-6 text-emerald-400" />
                                 </div>
                                 <h3 className="text-lg font-bold text-white">Group Created!</h3>
-                                <p className="text-xs text-slate-400 mt-1">Share these credentials with the Group Owner. <span className="font-semibold text-amber-400">They won't be shown again.</span></p>
+                                <p className="text-xs text-slate-400 mt-1">Share these credentials with the Group Owner. <span className="font-semibold text-amber-400">They won&apos;t be shown again.</span></p>
                             </div>
                             <div className="space-y-3 mb-6">
                                 {[
