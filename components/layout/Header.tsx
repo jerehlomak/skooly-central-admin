@@ -1,12 +1,9 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { Bell, Search, RefreshCw, Menu, Sun, Moon } from 'lucide-react'
 import { useAuth } from '@/context/AuthContext'
 import { useTheme } from '@/context/ThemeContext'
 import { useMobileMenu } from '@/app/(dashboard)/layout'
-import { cn } from '@/lib/utils'
 
 interface HeaderProps {
     title: string
@@ -14,10 +11,9 @@ interface HeaderProps {
 }
 
 export default function Header({ title, subtitle }: HeaderProps) {
-    const { admin, logout } = useAuth()
+    const { admin } = useAuth()
     const { isDark, toggleTheme } = useTheme()
     const { setIsMobileMenuOpen } = useMobileMenu()
-    const pathname = usePathname()
 
     return (
         <header className="sticky top-0 z-20 flex items-center justify-between h-16 px-6 gap-4"
