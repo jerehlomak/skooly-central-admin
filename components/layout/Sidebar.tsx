@@ -8,14 +8,20 @@ import { cn } from '@/lib/utils'
 import {
     LayoutDashboard, School, CreditCard, BarChart3,
     Zap, Megaphone, TicketCheck, ClipboardList, LogOut,
-    Shield, ChevronRight, Building2,
+    Shield, ChevronRight, Building2, Receipt, CircleDollarSign,
+    FileText, Tag, Wallet
 } from 'lucide-react'
 
 export const navItems = [
     { label: 'Overview', href: '/', icon: LayoutDashboard },
     { label: 'School Groups', href: '/groups', icon: Building2 },
     { label: 'Schools', href: '/schools', icon: School },
-    { label: 'Plans', href: '/plans', icon: CreditCard },
+    { label: 'Billing Overview', href: '/billing', icon: Wallet },
+    { label: 'Plans', href: '/billing/plans', icon: CreditCard },
+    { label: 'Subscriptions', href: '/billing/subscriptions', icon: FileText },
+    { label: 'Invoices', href: '/billing/invoices', icon: Receipt },
+    { label: 'Payments', href: '/billing/payments', icon: CircleDollarSign },
+    { label: 'Coupons', href: '/billing/coupons', icon: Tag },
     { label: 'Analytics', href: '/analytics', icon: BarChart3 },
     { label: 'Features', href: '/features', icon: Zap },
     { label: 'Announcements', href: '/announcements', icon: Megaphone },

@@ -19,7 +19,7 @@ export interface SubscriptionPlan {
     id: string
     name: string
     description?: string
-    price: number
+    monthlyPrice: number
     maxStudents: number
     maxTeachers: number
     maxClasses: number
@@ -46,7 +46,7 @@ export interface School {
     suspendedAt?: string
     suspendReason?: string
     createdAt: string
-    plan?: { name: string; price: number }
+    plan?: { name: string; monthlyPrice: number }
     subscription?: { isActive: boolean; endDate?: string }
 }
 

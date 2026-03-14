@@ -218,7 +218,7 @@ export default function SchoolDetailPage() {
                                     <select className={inputCls} style={inputStyle} value={editForm.planId}
                                         onChange={e => setEditForm(p => ({ ...p, planId: e.target.value }))}>
                                         <option value="">No Plan</option>
-                                        {plans.map(p => <option key={p.id} value={p.id}>{p.name} (${p.price}/mo)</option>)}
+                                        {plans.map(p => <option key={p.id} value={p.id}>{p.name} (${p.monthlyPrice}/mo)</option>)}
                                     </select>
                                 </div>
                                 <div>
