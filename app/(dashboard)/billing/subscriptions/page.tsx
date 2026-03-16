@@ -19,7 +19,7 @@ export default function SubscriptionsManagementPage() {
         try {
             const { data } = await api.get('/billing/subscriptions')
             setSubscriptions(data.subscriptions)
-        } catch (error) {
+        } catch {
             toast.error('Failed to load subscriptions')
         } finally {
             setLoading(false)
