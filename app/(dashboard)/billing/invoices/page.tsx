@@ -7,8 +7,10 @@ import { formatCurrency, formatDate } from '@/lib/utils'
 import { Receipt, Search, Download, CheckCircle2 } from 'lucide-react'
 import { toast } from 'sonner'
 
+import { Invoice } from '@/types'
+
 export default function InvoicesManagementPage() {
-    const [invoices, setInvoices] = useState<any[]>([])
+    const [invoices, setInvoices] = useState<Invoice[]>([])
     const [loading, setLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
 

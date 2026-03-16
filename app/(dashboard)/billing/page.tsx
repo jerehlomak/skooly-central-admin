@@ -5,11 +5,13 @@ import Header from '@/components/layout/Header'
 import api from '@/lib/api'
 import { formatCurrency } from '@/lib/utils'
 import {
-    Wallet, TrendingUp, Users, AlertTriangle, Building2
+    Wallet, TrendingUp, Users, AlertTriangle
 } from 'lucide-react'
 
+import { BillingAnalytics } from '@/types'
+
 export default function BillingOverviewPage() {
-    const [stats, setStats] = useState<any>(null)
+    const [stats, setStats] = useState<BillingAnalytics | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {

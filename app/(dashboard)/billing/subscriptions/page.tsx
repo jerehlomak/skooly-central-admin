@@ -3,12 +3,14 @@
 import { useEffect, useState } from 'react'
 import Header from '@/components/layout/Header'
 import api from '@/lib/api'
-import { formatCurrency, formatDate } from '@/lib/utils'
+import { formatDate } from '@/lib/utils'
 import { FileText, Search, Ban, ArrowUpCircle } from 'lucide-react'
 import { toast } from 'sonner'
 
+import { SchoolSubscription } from '@/types'
+
 export default function SubscriptionsManagementPage() {
-    const [subscriptions, setSubscriptions] = useState<any[]>([])
+    const [subscriptions, setSubscriptions] = useState<SchoolSubscription[]>([])
     const [loading, setLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
 

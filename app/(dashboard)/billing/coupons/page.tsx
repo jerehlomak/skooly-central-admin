@@ -7,11 +7,19 @@ import { formatDate } from '@/lib/utils'
 import { Tag, Plus, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 
+import { Coupon, DiscountType } from '@/types'
+
 export default function CouponsManagementPage() {
-    const [coupons, setCoupons] = useState<any[]>([])
+    const [coupons, setCoupons] = useState<Coupon[]>([])
     const [loading, setLoading] = useState(true)
     const [showForm, setShowForm] = useState(false)
-    const [form, setForm] = useState({ code: '', discountType: 'PERCENTAGE', discountValue: 0, expiresAt: '', usageLimit: 0 })
+    const [form, setForm] = useState<{
+        code: string;
+        discountType: DiscountType;
+        discountValue: number;
+        expiresAt: string;
+        usageLimit: number;
+    }>({ code: '', discountType: 'PERCENTAGE', discountValue: 0, expiresAt: '', usageLimit: 0 })
 
     const load = async () => {
         setLoading(true)
@@ -118,7 +126,7 @@ export default function CouponsManagementPage() {
                                 <div className="grid grid-cols-2 gap-3">
                                     <div>
                                         <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1">Type</label>
-                                        <select value={form.discountType} onChange={e => setForm(p => ({ ...p, discountType: e.target.value }))}
+                                        <select value={form.discountType} onChange={e => setForm(p => ({ ...p, discountType: e.target.value as DiscountType }))}
                                             className="w-full px-3 py-2 rounded-xl text-sm outline-none bg-[var(--bg-main)] border border-[var(--border-color)] text-[var(--text-primary)]">
                                             <option value="PERCENTAGE">Percentage (%)</option>
                                             <option value="FIXED">Fixed Amount ($)</option>

@@ -3,19 +3,20 @@
 import { useEffect, useState } from 'react'
 import Header from '@/components/layout/Header'
 import api from '@/lib/api'
-import { SubscriptionPlan } from '@/types'
 import { formatCurrency } from '@/lib/utils'
 import { Plus, Pencil, Trash2, Check, Users, GraduationCap, BookOpen, Building2, HardDrive } from 'lucide-react'
 import { toast } from 'sonner'
+
+import { SubscriptionPlan } from '@/types'
 
 const PLAN_COLORS = ['#3b82f6', '#8b5cf6', '#10b981']
 const DEFAULT_FEATURES = ['accounts', 'fees', 'salary', 'timetable', 'homework', 'behaviour', 'store', 'whatsapp', 'messaging', 'sms', 'live-class', 'question-paper', 'exams', 'billing']
 
 export default function PlansPage() {
-    const [plans, setPlans] = useState<any[]>([])
+    const [plans, setPlans] = useState<SubscriptionPlan[]>([])
     const [loading, setLoading] = useState(true)
     const [showForm, setShowForm] = useState(false)
-    const [editing, setEditing] = useState<any | null>(null)
+    const [editing, setEditing] = useState<SubscriptionPlan | null>(null)
     const [form, setForm] = useState({
         name: '', description: '', monthlyPrice: 0, yearlyPrice: 0,
         maxStudents: 200, maxTeachers: 20, maxClasses: 15, maxBranches: 1, storageLimit: 1024,
@@ -36,7 +37,7 @@ export default function PlansPage() {
         setShowForm(true)
     }
 
-    const openEdit = (p: any) => {
+    const openEdit = (p: SubscriptionPlan) => {
         setEditing(p)
         setForm({
             name: p.name, description: p.description || '',
@@ -136,7 +137,7 @@ export default function PlansPage() {
                                     </div>
 
                                     <div className="flex flex-wrap gap-1.5 mb-4">
-                                        {Array.isArray(p.features) && p.features.map((f: any) => (
+                                        {Array.isArray(p.features) && p.features.map((f: string) => (
                                             <span key={f} className="px-2 py-0.5 rounded-full text-xs border border-blue-500/20 bg-blue-500/10 text-blue-400 capitalize">{f}</span>
                                         ))}
                                     </div>

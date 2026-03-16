@@ -15,19 +15,104 @@ export interface CentralAdmin {
     createdAt: string
 }
 
+export type SubscriptionStatus = 'TRIAL' | 'ACTIVE' | 'PAST_DUE' | 'CANCELLED' | 'EXPIRED' | 'SUSPENDED'
+export type BillingCycle = 'MONTHLY' | 'YEARLY'
+export type InvoiceStatus = 'DRAFT' | 'OPEN' | 'PAID' | 'VOID' | 'FAILED'
+export type PaymentMethod = 'CARD' | 'BANK_TRANSFER' | 'PAYSTACK' | 'FLUTTERWAVE' | 'STRIPE'
+export type PaymentStatus = 'PENDING' | 'COMPLETED' | 'FAILED' | 'REFUNDED'
+export type DiscountType = 'PERCENTAGE' | 'FIXED'
+
 export interface SubscriptionPlan {
     id: string
     name: string
     description?: string
     monthlyPrice: number
+    yearlyPrice: number
     maxStudents: number
     maxTeachers: number
     maxClasses: number
+    maxBranches: number
+    storageLimit: number
     features: string[]
     isActive: boolean
     trialDays: number
     createdAt: string
     _count?: { schools: number }
+}
+
+export interface Coupon {
+    id: string
+    code: string
+    discountType: DiscountType
+    discountValue: number
+    expiresAt?: string
+    usageLimit?: number | null
+    usedCount: number
+    isActive: boolean
+    createdAt: string
+    updatedAt: string
+}
+
+export interface Invoice {
+    id: string
+    schoolId: string
+    subscriptionId: string
+    invoiceNumber: string
+    amount: number
+    currency: string
+    taxAmount: number
+    totalAmount: number
+    dueDate: string
+    status: InvoiceStatus
+    createdAt: string
+    updatedAt: string
+    school?: { name: string }
+}
+
+export interface Payment {
+    id: string
+    invoiceId: string
+    schoolId: string
+    paymentMethod: PaymentMethod
+    amount: number
+    currency: string
+    transactionId?: string | null
+    status: PaymentStatus
+    paidAt?: string | null
+    createdAt: string
+    updatedAt: string
+    school?: { name: string }
+    invoice?: { invoiceNumber: string }
+}
+
+export interface SchoolSubscription {
+    id: string
+    schoolId: string
+    planId: string
+    status: SubscriptionStatus
+    billingCycle: BillingCycle
+    startDate: string
+    endDate?: string | null
+    trialEnd?: string | null
+    nextBillingDate?: string | null
+    cancelledAt?: string | null
+    suspendedAt?: string | null
+    isActive: boolean
+    autoRenew: boolean
+    amountPaid: number
+    currency: string
+    createdAt: string
+    updatedAt: string
+    school?: { name: string; email: string }
+    plan?: { name: string }
+}
+
+export interface BillingAnalytics {
+    mrr: number
+    arr: number
+    activeSubscriptions: number
+    pastDueAccounts: number
+    totalSchools: number
 }
 
 export interface School {

@@ -7,8 +7,10 @@ import { formatCurrency, formatDate } from '@/lib/utils'
 import { CircleDollarSign, Search } from 'lucide-react'
 import { toast } from 'sonner'
 
+import { Payment } from '@/types'
+
 export default function PaymentsManagementPage() {
-    const [payments, setPayments] = useState<any[]>([])
+    const [payments, setPayments] = useState<Payment[]>([])
     const [loading, setLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState('')
 
