@@ -52,7 +52,7 @@ export default function AnalyticsPage() {
                 </div>
 
                 {/* Summary cards */}
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {[
                         { label: 'Period Revenue', value: formatCurrency(totalRevenue), icon: DollarSign, color: '#10b981' },
                         { label: 'New Schools', value: totalNewSchools, icon: School, color: '#3b82f6' },
@@ -118,7 +118,7 @@ export default function AnalyticsPage() {
                                 {pieData.length === 0 ? (
                                     <div className="flex items-center justify-center h-48 text-slate-600 text-sm">No plan data</div>
                                 ) : (
-                                    <ResponsiveContainer width="100%" height={200}>
+                                    <ResponsiveContainer width="100%" height={250}>
                                         <PieChart>
                                             <Pie data={pieData} cx="50%" cy="50%" outerRadius={70} dataKey="value" label={({ name, value }) => `${name}: ${value}`} labelLine={false}>
                                                 {pieData.map((_, i) => <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />)}

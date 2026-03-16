@@ -64,10 +64,10 @@ export default function FeaturesPage() {
     return (
         <div className="min-h-screen flex flex-col">
             <Header title="Feature Management" subtitle="Enable or disable features per school" />
-            <div className="p-6 flex gap-5 h-[calc(100vh-4rem)]">
+            <div className="p-6 flex flex-col md:flex-row gap-5 h-full lg:h-[calc(100vh-4rem)]">
 
                 {/* School list */}
-                <div className="w-72 glass-card flex flex-col overflow-hidden flex-shrink-0">
+                <div className="w-full md:w-72 glass-card flex flex-col overflow-hidden flex-shrink-0">
                     <div className="p-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
                         <div className="flex items-center gap-2 px-3 py-2 rounded-xl"
                             style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
@@ -91,7 +91,7 @@ export default function FeaturesPage() {
                 {/* Feature flags panel */}
                 <div className="flex-1 glass-card flex flex-col overflow-hidden">
                     {!selected ? (
-                        <div className="flex-1 flex flex-col items-center justify-center gap-3 text-slate-600">
+                        <div className="flex-1 flex p-4 flex-col items-center justify-center gap-3 text-slate-600">
                             <Zap className="w-10 h-10 opacity-30" />
                             <p className="text-sm">Select a school to manage features</p>
                         </div>
@@ -115,7 +115,7 @@ export default function FeaturesPage() {
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                         {ALL_FEATURES.map(({ key, label }) => (
                                             <div key={key} className="flex items-center justify-between p-4 rounded-xl border hover:border-blue-500/20 transition-all"
-                                                style={{ background: 'rgba(255,255,255,0.03)', borderColor: 'rgba(255,255,255,0.08)' }}>
+                                                style={{ background: 'rgba(255,255,255,0.03)', borderColor: '#e5e5e5' }}>
                                                 <div className="flex items-center gap-3">
                                                     <div className={`w-2 h-2 rounded-full ${flags[key] ? 'bg-emerald-400' : 'bg-slate-600'}`} />
                                                     <p className="text-sm" style={{ color: 'var(--text-primary)' }}>{label}</p>

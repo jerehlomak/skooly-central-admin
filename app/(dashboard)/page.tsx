@@ -75,14 +75,14 @@ export default function OverviewPage() {
             <div className="p-6 flex-1 space-y-6">
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <StatCard label="Total Schools" value={stats?.totalSchools ?? 0} icon={SchoolIcon} color="#3b82f6" trend="+2 this month" />
                     <StatCard label="Active Schools" value={stats?.activeSchools ?? 0} icon={Activity} color="#10b981" />
                     <StatCard label="Total Students" value={(stats?.totalStudents ?? 0).toLocaleString()} icon={Users} color="#8b5cf6" />
                     <StatCard label="Total Teachers" value={(stats?.totalTeachers ?? 0).toLocaleString()} icon={GraduationCap} color="#f59e0b" />
                 </div>
 
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <StatCard label="Active Plans" value={stats?.totalPlans ?? 0} icon={CreditCard} color="#06b6d4" />
                     <StatCard label="Suspended" value={stats?.suspendedSchools ?? 0} icon={SchoolIcon} color="#ef4444" />
                     <StatCard label="Monthly Revenue" value={formatCurrency(stats?.monthlyRevenue ?? 0)} icon={DollarSign} color="#10b981" trend="+12% MoM" />
@@ -90,8 +90,8 @@ export default function OverviewPage() {
                 </div>
 
                 {/* Revenue + Growth Charts */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="glass-card p-5">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+                    <div className="glass-card p-4 w-full">
                         <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>Monthly Revenue</h3>
                         <p className="text-xs text-slate-500 mb-4">Last 6 months</p>
                         <ResponsiveContainer width="100%" height={200}>
@@ -111,7 +111,7 @@ export default function OverviewPage() {
                         </ResponsiveContainer>
                     </div>
 
-                    <div className="glass-card p-5">
+                    <div className="glass-card p-4 w-full">
                         <h3 className="text-sm font-semibold mb-1" style={{ color: 'var(--text-primary)' }}>School Growth</h3>
                         <p className="text-xs text-slate-500 mb-4">New schools per month</p>
                         <ResponsiveContainer width="100%" height={200}>

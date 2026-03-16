@@ -30,7 +30,9 @@ export default function BillingOverviewPage() {
     }
 
     if (isLoading) {
-        return <div className="p-8"><div className="animate-pulse flex space-x-4">Loading billing analytics...</div></div>
+        return <div className="flex-1 flex items-center justify-center">
+            <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+        </div>
     }
 
     return (

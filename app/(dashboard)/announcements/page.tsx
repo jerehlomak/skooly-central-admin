@@ -82,14 +82,14 @@ export default function AnnouncementsPage() {
                         {items.map(a => (
                             <div key={a.id} className="glass-card p-5 flex gap-4 hover:border-blue-500/20 transition-all">
                                 <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-3 mb-2">
+                                    <div className="flex flex-wrap items-center gap-3 mb-2">
                                         <h3 className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{a.title}</h3>
                                         <span className={`px-2 py-0.5 rounded-full text-xs border ${TYPE_COLORS[a.type] || TYPE_COLORS.INFO}`}>{a.type}</span>
                                         <span className="px-2 py-0.5 rounded-full text-xs border border-slate-700 text-slate-500">{a.targetGroup}</span>
                                         {a.isPublished && <span className="px-2 py-0.5 rounded-full text-xs border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">Published</span>}
                                     </div>
                                     <p className="text-sm text-slate-400 line-clamp-2">{a.body}</p>
-                                    <div className="flex items-center gap-4 mt-2 text-xs text-slate-600">
+                                    <div className="flex flex-wrap items-center gap-4 mt-2 text-xs text-slate-600">
                                         <span>By {a.admin?.name || 'Admin'}</span>
                                         <span>{formatRelativeTime(a.createdAt)}</span>
                                         {a.publishedAt && <span>Published {formatDate(a.publishedAt)}</span>}

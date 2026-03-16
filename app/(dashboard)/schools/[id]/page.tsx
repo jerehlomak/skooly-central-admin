@@ -306,7 +306,7 @@ export default function SchoolDetailPage() {
                             </div>
                             <div>
                                 <p className="text-xs text-slate-500 mb-0.5">Admin Email</p>
-                                <p className="text-sm font-mono" style={{ color: 'var(--text-primary)' }}>{adminUser.email}</p>
+                                <p className="text-sm font-mono break-words whitespace-normal" style={{ color: 'var(--text-primary)' }}>{adminUser.email}</p>
                             </div>
                         </div>
                     ) : (
