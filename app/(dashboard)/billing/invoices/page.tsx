@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Header from '@/components/layout/Header'
 import api from '@/lib/api'
 import { formatCurrency, formatDate } from '@/lib/utils'
-import { Receipt, Search, Download, CheckCircle2, Plus, Send, BellRing, Wallet, X } from 'lucide-react'
+import { Receipt, Search, Plus, Send, BellRing, Wallet, X } from 'lucide-react'
 import { toast } from 'sonner'
 
 import { Invoice, School } from '@/types'
@@ -60,8 +60,9 @@ export default function InvoicesManagementPage() {
             setShowCreate(false)
             setFormData({ schoolId: '', title: '', dueDate: '', items: [{ itemName: '', quantity: 1, unitPrice: 0 }] })
             load()
-        } catch (err: any) {
-            toast.error(err?.response?.data?.message || 'Failed to create invoice')
+        } catch (err: unknown) {
+            const error = err as { response?: { data?: { message?: string } } };
+            toast.error(error?.response?.data?.message || 'Failed to create invoice')
         } finally {
             setSubmitting(false)
         }
@@ -73,23 +74,25 @@ export default function InvoicesManagementPage() {
             await api.post(`/invoices/${id}/send`)
             toast.success('Invoice sent')
             load()
-        } catch (err: any) {
-            toast.error(err?.response?.data?.message || 'Failed to send invoice')
+        } catch (err: unknown) {
+            const error = err as { response?: { data?: { message?: string } } };
+            toast.error(error?.response?.data?.message || 'Failed to send invoice')
         }
     }
 
     const handleRecordPayment = async (e: React.FormEvent) => {
         e.preventDefault()
         if (!showPayment) return
-        const amount = (e.currentTarget as any).elements.amount.value
+        const amount = new FormData(e.currentTarget as HTMLFormElement).get('amount') as string
         setSubmitting(true)
         try {
             await api.post(`/invoices/${showPayment.id}/payment`, { amount: Number(amount) })
             toast.success('Payment recorded')
             setShowPayment(null)
             load()
-        } catch (err: any) {
-            toast.error(err?.response?.data?.message || 'Failed to record payment')
+        } catch (err: unknown) {
+            const error = err as { response?: { data?: { message?: string } } };
+            toast.error(error?.response?.data?.message || 'Failed to record payment')
         } finally {
             setSubmitting(false)
         }
@@ -98,15 +101,16 @@ export default function InvoicesManagementPage() {
     const handleSendReminder = async (e: React.FormEvent) => {
         e.preventDefault()
         if (!showReminder) return
-        const message = (e.currentTarget as any).elements.message.value
+        const message = new FormData(e.currentTarget as HTMLFormElement).get('message') as string
         setSubmitting(true)
         try {
             await api.post(`/invoices/${showReminder.id}/reminder`, { message })
             toast.success('Reminder sent')
             setShowReminder(null)
             load()
-        } catch (err: any) {
-            toast.error(err?.response?.data?.message || 'Failed to send reminder')
+        } catch (err: unknown) {
+            const error = err as { response?: { data?: { message?: string } } };
+            toast.error(error?.response?.data?.message || 'Failed to send reminder')
         } finally {
             setSubmitting(false)
         }

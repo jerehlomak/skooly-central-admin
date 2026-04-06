@@ -3,13 +3,24 @@
 import { useEffect, useState, useCallback } from 'react'
 import Header from '@/components/layout/Header'
 import api from '@/lib/api'
-import { KeyRound, Plus, Hash, Clock, School as SchoolIcon, Layers, FileDown, Search } from 'lucide-react'
+import { KeyRound, Plus, Hash, Clock, School as SchoolIcon, Layers, FileDown } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 import { toast } from 'sonner'
 
+interface PinBatch {
+    id: string;
+    batchNumber: string;
+    quantity: number;
+    _count?: { pins: number };
+    pinType: string;
+    admin?: { name: string };
+    createdAt: string;
+    school?: { name: string };
+}
+
 export default function PinManagerPage() {
-    const [batches, setBatches] = useState<any[]>([])
-    const [schools, setSchools] = useState<any[]>([])
+    const [batches, setBatches] = useState<PinBatch[]>([])
+    const [schools, setSchools] = useState<Array<{ id: string; name: string; status: string; }>>([])
     const [totalPins, setTotalPins] = useState(0)
     const [loading, setLoading] = useState(true)
 
@@ -141,7 +152,7 @@ export default function PinManagerPage() {
                         <div className="glass-card p-6 w-full max-w-md rounded-2xl border border-white/10">
                             <h2 className="text-lg font-bold mb-1 text-[var(--text-primary)]">Generate PINs</h2>
                             <p className="text-sm text-[var(--text-muted)] mb-6">Create a new batch of secure PIN codes.</p>
-                            
+
                             <form onSubmit={handleGenerate} className="space-y-4">
                                 <div>
                                     <label className="block text-xs font-medium text-slate-400 mb-1.5">Quantity *</label>

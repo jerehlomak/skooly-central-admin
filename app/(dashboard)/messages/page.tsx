@@ -14,7 +14,7 @@ import {
 // Messaging uses a shared (non-central) endpoint, so we use a separate base
 const MSG_BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1')
 
-function msgApi(method: 'get' | 'post' | 'put', path: string, data?: any) {
+function msgApi(method: 'get' | 'post' | 'put', path: string, data?: unknown) {
     // Attach central admin token from localStorage
     const token = typeof window !== 'undefined' ? localStorage.getItem('centralAdminToken') : null
     return axios({
@@ -49,7 +49,7 @@ export default function MessagesPage() {
     const [conversations, setConversations] = useState<Conversation[]>([])
     const [activeConv, setActiveConv] = useState<Conversation | null>(null)
     const [messages, setMessages] = useState<Message[]>([])
-    const [schools, setSchools] = useState<any[]>([])
+    const [schools, setSchools] = useState<Array<{ id: string; name: string; status: string }>>([])
     const [loading, setLoading] = useState(true)
     const [sending, setSending] = useState(false)
     const [input, setInput] = useState('')

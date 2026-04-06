@@ -6,7 +6,7 @@ import api from '@/lib/api'
 import { LineChart, Plus, ArrowUpRight, ArrowDownRight, Building2, Search, Filter } from 'lucide-react'
 import { formatCurrency, formatDate } from '@/lib/utils'
 import { toast } from 'sonner'
-import { PlatformTransaction } from '@/types'
+import { PlatformTransaction, School } from '@/types'
 
 export default function PlatformLedgerPage() {
     const [transactions, setTransactions] = useState<PlatformTransaction[]>([])
@@ -18,7 +18,7 @@ export default function PlatformLedgerPage() {
     const [form, setForm] = useState({
         type: 'INCOME', category: 'SUBSCRIPTION', amount: '', description: '', schoolId: '', reference: ''
     })
-    const [schools, setSchools] = useState<any[]>([])
+    const [schools, setSchools] = useState<School[]>([])
 
     const loadData = useCallback(async () => {
         setLoading(true)

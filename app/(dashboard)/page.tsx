@@ -90,8 +90,8 @@ export default function OverviewPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <StatCard label="Total Receivables" value={formatCurrency((stats as any)?.totalReceivables ?? 0)} icon={AlertCircle} color="#f59e0b" trend="Outstanding invoices" />
-                    <StatCard label="Wallet Liabilities" value={formatCurrency((stats as any)?.walletLiabilities ?? 0)} icon={Wallet} color="#8b5cf6" trend="Funds held in school wallets" />
+                    <StatCard label="Total Receivables" value={formatCurrency((stats as unknown as { totalReceivables?: number })?.totalReceivables ?? 0)} icon={AlertCircle} color="#f59e0b" trend="Outstanding invoices" />
+                    <StatCard label="Wallet Liabilities" value={formatCurrency((stats as unknown as { walletLiabilities?: number })?.walletLiabilities ?? 0)} icon={Wallet} color="#8b5cf6" trend="Funds held in school wallets" />
                 </div>
 
                 {/* Revenue + Growth Charts */}

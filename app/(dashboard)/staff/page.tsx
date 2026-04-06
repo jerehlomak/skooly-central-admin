@@ -3,14 +3,14 @@
 import { useEffect, useState, useCallback } from 'react'
 import Header from '@/components/layout/Header'
 import api from '@/lib/api'
-import { Users, Plus, ShieldAlert, ShieldCheck, Mail, Clock, Shield } from 'lucide-react'
+import { Users, Plus, ShieldAlert, Mail, Clock, Shield } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 import { toast } from 'sonner'
 import { useAuth } from '@/context/AuthContext'
 
 export default function CompanyStaffPage() {
     const { admin } = useAuth()
-    const [staff, setStaff] = useState<any[]>([])
+    const [staff, setStaff] = useState<Array<{ id: string; name: string; email: string; role: string; isActive: boolean; lastLogin?: string }>>([])
     const [loading, setLoading] = useState(true)
 
     const [showForm, setShowForm] = useState(false)
@@ -32,7 +32,7 @@ export default function CompanyStaffPage() {
         try {
             if (editingId) {
                 const payload = { ...form }
-                if (!payload.password) delete (payload as any).password
+                if (!payload.password) delete (payload as { password?: string }).password
                 await api.put(`/staff/${editingId}`, payload)
                 toast.success('Staff member updated')
             } else {
@@ -43,8 +43,9 @@ export default function CompanyStaffPage() {
             setEditingId(null)
             setForm({ name: '', email: '', password: '', role: 'STAFF', isActive: true })
             loadData()
-        } catch (err: any) {
-            toast.error(err.response?.data?.message || 'Failed to save staff member')
+        } catch (err: unknown) {
+            const error = err as { response?: { data?: { message?: string } } };
+            toast.error(error.response?.data?.message || 'Failed to save staff member')
         }
     }
 
@@ -54,10 +55,13 @@ export default function CompanyStaffPage() {
             await api.delete(`/staff/${id}`)
             toast.success('Staff member removed')
             loadData()
-        } catch (err: any) { toast.error(err.response?.data?.message || 'Failed to remove staff') }
+        } catch (err: unknown) {
+            const error = err as { response?: { data?: { message?: string } } };
+            toast.error(error.response?.data?.message || 'Failed to remove staff')
+        }
     }
 
-    const openEdit = (s: any) => {
+    const openEdit = (s: { id: string; name: string; email: string; role: string; isActive: boolean }) => {
         setEditingId(s.id)
         setForm({ name: s.name, email: s.email, password: '', role: s.role, isActive: s.isActive })
         setShowForm(true)
