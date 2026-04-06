@@ -37,7 +37,7 @@ export default function LoginPage() {
 
             <div className="relative w-full max-w-md px-6">
                 {/* Card */}
-                <div className="glass-card p-8 rounded-2xl">
+                <div className="p-8 rounded-2xl backdrop-blur-[12px] border shadow-2xl" style={{ background: 'rgba(17, 24, 39, 0.85)', borderColor: 'rgba(255, 255, 255, 0.08)' }}>
                     {/* Logo */}
                     <div className="flex flex-col items-center mb-8">
                         <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4"
