@@ -58,7 +58,7 @@ export default function LoginPage() {
                                 required
                                 placeholder="admin@skooly.com"
                                 className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
-                                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white' }}
                             />
                         </div>
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
                                     required
                                     placeholder="••••••••"
                                     className="w-full px-4 py-3 pr-12 rounded-xl text-sm text-white placeholder-slate-600 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
-                                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white' }}
                                 />
                                 <button type="button" onClick={() => setShowPw(!showPw)}
                                     className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
