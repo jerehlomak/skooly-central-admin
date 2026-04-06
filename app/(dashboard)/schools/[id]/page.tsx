@@ -19,11 +19,12 @@ export default function SchoolDetailPage() {
     const [loading, setLoading] = useState(true)
     const [isEditing, setIsEditing] = useState(false)
     const [saving, setSaving] = useState(false)
+    const [copied, setCopied] = useState(false)
     const [plans, setPlans] = useState<SubscriptionPlan[]>([])
     const [groups, setGroups] = useState<{ id: string; name: string }[]>([])
     const [editForm, setEditForm] = useState({
         name: '', email: '', phone: '', address: '', country: 'Nigeria', adminEmail: '', planId: '',
-        studentCount: 0, teacherCount: 0, groupId: ''
+        studentCount: 0, teacherCount: 0, groupId: '', schoolCode: ''
     })
 
     const load = useCallback(async () => {
@@ -45,6 +46,7 @@ export default function SchoolDetailPage() {
                 studentCount: s.studentCount || 0,
                 teacherCount: s.teacherCount || 0,
                 groupId: s.groupId || '',
+                schoolCode: s.schoolCode || ''
             })
             if (credsRes.data?.admin) {
                 setAdminUser({ email: credsRes.data.admin.email, loginUrl: credsRes.data.loginUrl })
@@ -192,6 +194,15 @@ export default function SchoolDetailPage() {
                                     <input type="email" className={inputCls} style={inputStyle} value={editForm.email}
                                         onChange={e => setEditForm(p => ({ ...p, email: e.target.value }))} />
                                 </div>
+                                <div className="sm:col-span-2">
+                                    <label className="block text-xs text-slate-400 mb-1">School ID (Code) *</label>
+                                    <div className="relative">
+                                        <input className={inputCls} style={inputStyle} value={editForm.schoolCode}
+                                            onChange={e => setEditForm(p => ({ ...p, schoolCode: e.target.value.toUpperCase() }))}
+                                            placeholder="e.g. SKL-A1B2C3" />
+                                    </div>
+                                    <p className="text-[10px] text-slate-500 mt-1">This ID is heavily required for parent/student logins.</p>
+                                </div>
                                 <div>
                                     <label className="block text-xs text-slate-400 mb-1">Phone</label>
                                     <input className={inputCls} style={inputStyle} value={editForm.phone}
@@ -254,12 +265,15 @@ export default function SchoolDetailPage() {
                                     <button
                                         onClick={() => {
                                             const code = (school as unknown as { schoolCode?: string }).schoolCode
-                                            if (code) { navigator.clipboard.writeText(code); }
-                                        }
-                                        }
-                                        className="text-xs text-slate-400 hover:text-blue-400 transition-colors ml-1"
+                                            if (code) { 
+                                                navigator.clipboard.writeText(code); 
+                                                setCopied(true);
+                                                setTimeout(() => setCopied(false), 2000);
+                                            }
+                                        }}
+                                        className="text-xs text-slate-400 hover:text-blue-400 transition-colors ml-1 flex items-center gap-1"
                                         title="Copy School ID">
-                                        Copy
+                                        {copied ? <CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> : 'Copy'}
                                     </button>
                                 </div>
                             </div>

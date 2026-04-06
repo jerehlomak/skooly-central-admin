@@ -3,13 +3,13 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
-import { useMobileMenu } from '@/app/(dashboard)/layout'
+import { useMobileMenu } from '@/context/MobileMenuContext'
 import { cn } from '@/lib/utils'
 import {
     LayoutDashboard, School, CreditCard, BarChart3,
     Zap, Megaphone, TicketCheck, ClipboardList, LogOut,
     Shield, ChevronRight, Building2, Receipt, CircleDollarSign,
-    FileText, Tag, Wallet
+    FileText, Tag, Wallet, KeyRound, Users, LineChart, MessageSquare, TrendingUp
 } from 'lucide-react'
 
 export const navItems = [
@@ -22,7 +22,12 @@ export const navItems = [
     { label: 'Invoices', href: '/billing/invoices', icon: Receipt },
     { label: 'Payments', href: '/billing/payments', icon: CircleDollarSign },
     { label: 'Coupons', href: '/billing/coupons', icon: Tag },
+    { label: 'Company Ledger', href: '/ledger', icon: LineChart },
+    { label: 'PIN Manager', href: '/pins', icon: KeyRound },
+    { label: 'Messages', href: '/messages', icon: MessageSquare },
+    { label: 'Company Staff', href: '/staff', icon: Users },
     { label: 'Analytics', href: '/analytics', icon: BarChart3 },
+    { label: 'Financial Analytics', href: '/analytics/financials', icon: TrendingUp },
     { label: 'Features', href: '/features', icon: Zap },
     { label: 'Announcements', href: '/announcements', icon: Megaphone },
     { label: 'Support Tickets', href: '/tickets', icon: TicketCheck },

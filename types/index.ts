@@ -17,7 +17,7 @@ export interface CentralAdmin {
 
 export type SubscriptionStatus = 'TRIAL' | 'ACTIVE' | 'PAST_DUE' | 'CANCELLED' | 'EXPIRED' | 'SUSPENDED'
 export type BillingCycle = 'MONTHLY' | 'YEARLY'
-export type InvoiceStatus = 'DRAFT' | 'OPEN' | 'PAID' | 'VOID' | 'FAILED'
+export type InvoiceStatus = 'DRAFT' | 'OPEN' | 'PAID' | 'VOID' | 'FAILED' | 'SENT' | 'PARTIALLY_PAID' | 'OVERDUE' | 'CANCELLED'
 export type PaymentMethod = 'CARD' | 'BANK_TRANSFER' | 'PAYSTACK' | 'FLUTTERWAVE' | 'STRIPE'
 export type PaymentStatus = 'PENDING' | 'COMPLETED' | 'FAILED' | 'REFUNDED'
 export type DiscountType = 'PERCENTAGE' | 'FIXED'
@@ -56,17 +56,22 @@ export interface Coupon {
 export interface Invoice {
     id: string
     schoolId: string
-    subscriptionId: string
+    subscriptionId?: string
     invoiceNumber: string
+    title?: string
     amount: number
     currency: string
     taxAmount: number
+    discountAmount?: number
     totalAmount: number
+    amountPaid?: number
+    amountDue?: number
     dueDate: string
     status: InvoiceStatus
+    paidFromWallet?: boolean
     createdAt: string
     updatedAt: string
-    school?: { name: string }
+    school?: { name: string; schoolCode?: string }
 }
 
 export interface Payment {
@@ -117,6 +122,7 @@ export interface BillingAnalytics {
 
 export interface School {
     id: string
+    schoolCode?: string
     name: string
     email: string
     phone?: string
@@ -208,3 +214,21 @@ export interface MonthlyData {
     totalStudents: number
     totalTeachers: number
 }
+
+export interface PlatformTransaction {
+    id: string
+    reference: string
+    type: 'INCOME' | 'EXPENSE'
+    category: string
+    amount: number
+    currency: string
+    description?: string
+    schoolId?: string
+    adminId?: string
+    date: string
+    createdAt: string
+    updatedAt: string
+    school?: { name: string }
+    admin?: { name: string }
+}
+

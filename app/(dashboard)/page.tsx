@@ -7,7 +7,7 @@ import { PlatformStats, School } from '@/types'
 import { formatCurrency, formatDate } from '@/lib/utils'
 import {
     School as SchoolIcon, Users, GraduationCap,
-    CreditCard, DollarSign, TicketCheck, TrendingUp, Activity
+    CreditCard, DollarSign, TicketCheck, TrendingUp, Activity, AlertCircle, Wallet
 } from 'lucide-react'
 import {
     AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
@@ -85,8 +85,13 @@ export default function OverviewPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <StatCard label="Active Plans" value={stats?.totalPlans ?? 0} icon={CreditCard} color="#06b6d4" />
                     <StatCard label="Suspended" value={stats?.suspendedSchools ?? 0} icon={SchoolIcon} color="#ef4444" />
-                    <StatCard label="Monthly Revenue" value={formatCurrency(stats?.monthlyRevenue ?? 0)} icon={DollarSign} color="#10b981" trend="+12% MoM" />
+                    <StatCard label="Monthly Revenue" value={formatCurrency(stats?.monthlyRevenue ?? 0)} icon={DollarSign} color="#10b981" trend="Rolling 30 days" />
                     <StatCard label="Open Tickets" value={stats?.openTickets ?? 0} icon={TicketCheck} color="#f97316" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <StatCard label="Total Receivables" value={formatCurrency((stats as any)?.totalReceivables ?? 0)} icon={AlertCircle} color="#f59e0b" trend="Outstanding invoices" />
+                    <StatCard label="Wallet Liabilities" value={formatCurrency((stats as any)?.walletLiabilities ?? 0)} icon={Wallet} color="#8b5cf6" trend="Funds held in school wallets" />
                 </div>
 
                 {/* Revenue + Growth Charts */}

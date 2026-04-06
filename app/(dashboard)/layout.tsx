@@ -1,19 +1,10 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
 import Sidebar from '@/components/layout/Sidebar'
-
-export const MobileMenuContext = createContext<{
-    isMobileMenuOpen: boolean;
-    setIsMobileMenuOpen: (v: boolean) => void;
-}>({
-    isMobileMenuOpen: false,
-    setIsMobileMenuOpen: () => { }
-});
-
-export const useMobileMenu = () => useContext(MobileMenuContext);
+import { MobileMenuContext } from '@/context/MobileMenuContext'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     const { admin, loading } = useAuth()

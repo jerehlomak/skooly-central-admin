@@ -3,7 +3,7 @@
 import { Bell, Search, RefreshCw, Menu, Sun, Moon } from 'lucide-react'
 import { useAuth } from '@/context/AuthContext'
 import { useTheme } from '@/context/ThemeContext'
-import { useMobileMenu } from '@/app/(dashboard)/layout'
+import { useMobileMenu } from '@/context/MobileMenuContext'
 
 interface HeaderProps {
     title: string
