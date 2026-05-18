@@ -14,8 +14,9 @@ import {
 
 export const navItems = [
     { label: 'Overview', href: '/', icon: LayoutDashboard },
-    { label: 'School Groups', href: '/groups', icon: Building2 },
+    { label: 'Branches', href: '/groups', icon: Building2 },
     { label: 'Schools', href: '/schools', icon: School },
+    { label: 'School Leads', href: '/leads', icon: TrendingUp },
     { label: 'Billing Overview', href: '/billing', icon: Wallet },
     { label: 'Plans', href: '/billing/plans', icon: CreditCard },
     { label: 'Subscriptions', href: '/billing/subscriptions', icon: FileText },
@@ -24,6 +25,7 @@ export const navItems = [
     { label: 'Coupons', href: '/billing/coupons', icon: Tag },
     { label: 'Company Ledger', href: '/ledger', icon: LineChart },
     { label: 'PIN Manager', href: '/pins', icon: KeyRound },
+    { label: 'Applications', href: '/applications', icon: ClipboardList },
     { label: 'Messages', href: '/messages', icon: MessageSquare },
     { label: 'Company Staff', href: '/staff', icon: Users },
     { label: 'Analytics', href: '/analytics', icon: BarChart3 },

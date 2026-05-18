@@ -211,11 +211,11 @@ export default function SchoolsPage() {
                                         className="w-full px-3 py-2 rounded-xl text-sm outline-none"
                                         style={{ background: 'transparent', border: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>
                                         <option value="">No Plan</option>
-                                        {plans.map(p => <option key={p.id} value={p.id}>{p.name} (${p.monthlyPrice}/mo)</option>)}
+                                        {plans.map(p => <option key={p.id} value={p.id}>{p.name} (₦{p.monthlyPrice}/mo)</option>)}
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-xs text-slate-400 mb-1">School Group (Optional)</label>
+                                    <label className="block text-xs text-slate-400 mb-1">Branch (Optional)</label>
                                     <select value={form.groupId} onChange={e => setForm(p => ({ ...p, groupId: e.target.value }))}
                                         className="w-full px-3 py-2 rounded-xl text-sm outline-none"
                                         style={{ background: 'transparent', border: '1px solid var(--border-color)', color: 'var(--text-primary)' }}>

@@ -48,7 +48,7 @@ export default function BillingOverviewPage() {
                             <div>
                                 <p className="text-sm font-medium text-[var(--text-muted)]">Monthly Recurring Revenue</p>
                                 <p className="text-3xl font-bold text-[var(--text-primary)] mt-2">
-                                    {formatCurrency(stats?.mrr || 0, 'USD')}
+                                    {formatCurrency(stats?.mrr || 0, 'NGN')}
                                 </p>
                             </div>
                             <div className="w-12 h-12 rounded-full flex items-center justify-center bg-green-500/10 text-green-500">
@@ -63,7 +63,7 @@ export default function BillingOverviewPage() {
                             <div>
                                 <p className="text-sm font-medium text-[var(--text-muted)]">Annual Recurring Revenue</p>
                                 <p className="text-3xl font-bold text-[var(--text-primary)] mt-2">
-                                    {formatCurrency(stats?.arr || 0, 'USD')}
+                                    {formatCurrency(stats?.arr || 0, 'NGN')}
                                 </p>
                             </div>
                             <div className="w-12 h-12 rounded-full flex items-center justify-center bg-blue-500/10 text-blue-500">

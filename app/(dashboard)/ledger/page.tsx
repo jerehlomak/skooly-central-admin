@@ -73,7 +73,7 @@ export default function PlatformLedgerPage() {
                         <div className="p-3 w-max rounded-xl bg-emerald-500/10 text-emerald-400 mb-2 relative z-10">
                             <ArrowUpRight className="w-5 h-5" />
                         </div>
-                        <p className="text-3xl font-bold text-emerald-400 relative z-10">{formatCurrency(totals.INCOME, 'USD')}</p>
+                        <p className="text-3xl font-bold text-emerald-400 relative z-10">{formatCurrency(totals.INCOME, 'NGN')}</p>
                         <p className="text-sm text-[var(--text-muted)] relative z-10">Total Income</p>
                     </div>
 
@@ -84,7 +84,7 @@ export default function PlatformLedgerPage() {
                         <div className="p-3 w-max rounded-xl bg-red-500/10 text-red-400 mb-2 relative z-10">
                             <ArrowDownRight className="w-5 h-5" />
                         </div>
-                        <p className="text-3xl font-bold text-red-400 relative z-10">{formatCurrency(totals.EXPENSE, 'USD')}</p>
+                        <p className="text-3xl font-bold text-red-400 relative z-10">{formatCurrency(totals.EXPENSE, 'NGN')}</p>
                         <p className="text-sm text-[var(--text-muted)] relative z-10">Total Expenses</p>
                     </div>
 
@@ -96,7 +96,7 @@ export default function PlatformLedgerPage() {
                         <div className="p-3 w-max rounded-xl mb-2 relative z-10" style={{ background: net >= 0 ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', color: net >= 0 ? '#34d399' : '#f87171' }}>
                             <LineChart className="w-5 h-5" />
                         </div>
-                        <p className="text-3xl font-bold relative z-10" style={{ color: net >= 0 ? '#34d399' : '#f87171' }}>{formatCurrency(net, 'USD')}</p>
+                        <p className="text-3xl font-bold relative z-10" style={{ color: net >= 0 ? '#34d399' : '#f87171' }}>{formatCurrency(net, 'NGN')}</p>
                         <p className="text-sm text-[var(--text-muted)] relative z-10">Net Profitability</p>
                     </div>
                 </div>
@@ -152,7 +152,7 @@ export default function PlatformLedgerPage() {
                                             </span>
                                         </td>
                                         <td className={`px-6 py-4 font-bold ${tx.type === 'INCOME' ? 'text-emerald-400' : 'text-red-400'}`}>
-                                            {tx.type === 'INCOME' ? '+' : '-'}{formatCurrency(tx.amount, tx.currency || 'USD')}
+                                            {tx.type === 'INCOME' ? '+' : '-'}{formatCurrency(tx.amount, tx.currency || 'NGN')}
                                         </td>
                                         <td className="px-6 py-4">
                                             {tx.school ? (
@@ -215,9 +215,9 @@ export default function PlatformLedgerPage() {
                                 </div>
                                 
                                 <div>
-                                    <label className="block text-xs font-medium text-slate-400 mb-1.5">Amount (USD) *</label>
+                                    <label className="block text-xs font-medium text-slate-400 mb-1.5">Amount (NGN) *</label>
                                     <div className="relative">
-                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">$</span>
+                                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">₦</span>
                                         <input required type="number" min="0" step="0.01"
                                             value={form.amount} onChange={e => setForm(p => ({ ...p, amount: e.target.value }))}
                                             className="w-full pl-8 pr-4 py-2.5 rounded-xl text-sm outline-none border border-[var(--border-color)] bg-[var(--bg-main)] focus:border-blue-500 text-white" />

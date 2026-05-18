@@ -37,7 +37,7 @@ export default function GroupsPage() {
             const res = await api.get('/groups')
             setGroups(res.data.groups)
         } catch {
-            toast.error('Failed to load school groups')
+            toast.error('Failed to load branches')
         } finally {
             setLoading(false)
         }
@@ -50,7 +50,7 @@ export default function GroupsPage() {
         setSaving(true)
         try {
             const res = await api.post('/groups', form)
-            toast.success('School Group created!')
+            toast.success('Branch created!')
             setShowCreate(false)
             setForm({ name: '', ownerName: '', ownerEmail: '', ownerPhone: '' })
             if (res.data.credentials) {
@@ -79,7 +79,7 @@ export default function GroupsPage() {
 
     return (
         <div className="min-h-screen flex flex-col">
-            <Header title="School Groups" subtitle={`${groups.length} group${groups.length !== 1 ? 's' : ''} registered`} />
+            <Header title="Branches" subtitle={`${groups.length} branch${groups.length !== 1 ? 'es' : ''} registered`} />
             <div className="p-6 space-y-5">
 
                 {/* Toolbar */}
@@ -109,7 +109,7 @@ export default function GroupsPage() {
                                     <tr>
                                         <td colSpan={6} className="px-4 py-12 text-center">
                                             <Building2 className="w-8 h-8 text-slate-700 mx-auto mb-3" />
-                                            <p className="text-slate-500 text-sm">No school groups found. Create the first one!</p>
+                                            <p className="text-slate-500 text-sm">No branches found. Create the first one!</p>
                                         </td>
                                     </tr>
                                 ) : groups.map(g => (
@@ -185,7 +185,7 @@ export default function GroupsPage() {
                 {showCreate && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.75)' }}>
                         <div className="glass-card p-6 w-full max-w-lg rounded-2xl">
-                            <h2 className="text-base font-bold mb-1" style={{ color: 'var(--text-primary)' }}>Create School Group</h2>
+                            <h2 className="text-base font-bold mb-1" style={{ color: 'var(--text-primary)' }}>Create Branch</h2>
                             <p className="text-xs text-slate-500 mb-5">The owner will use these credentials to log in at the Group Owner Dashboard in the client app.</p>
                             <form onSubmit={handleCreate} className="space-y-4">
                                 <div>

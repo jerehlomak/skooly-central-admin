@@ -18,7 +18,7 @@ export default function PlansPage() {
     const [showForm, setShowForm] = useState(false)
     const [editing, setEditing] = useState<SubscriptionPlan | null>(null)
     const [form, setForm] = useState({
-        name: '', description: '', monthlyPrice: 0, yearlyPrice: 0,
+        name: '', description: '', monthlyPrice: 0, yearlyPrice: 0, priceLabel: '',
         maxStudents: 200, maxTeachers: 20, maxClasses: 15, maxBranches: 1, storageLimit: 1024,
         trialDays: 0, features: [] as string[]
     })
@@ -33,7 +33,7 @@ export default function PlansPage() {
 
     const openCreate = () => {
         setEditing(null)
-        setForm({ name: '', description: '', monthlyPrice: 0, yearlyPrice: 0, maxStudents: 200, maxTeachers: 20, maxClasses: 15, maxBranches: 1, storageLimit: 1024, trialDays: 0, features: [] })
+        setForm({ name: '', description: '', monthlyPrice: 0, yearlyPrice: 0, priceLabel: '', maxStudents: 200, maxTeachers: 20, maxClasses: 15, maxBranches: 1, storageLimit: 1024, trialDays: 0, features: [] })
         setShowForm(true)
     }
 
@@ -42,6 +42,7 @@ export default function PlansPage() {
         setForm({
             name: p.name, description: p.description || '',
             monthlyPrice: p.monthlyPrice, yearlyPrice: p.yearlyPrice,
+            priceLabel: p.priceLabel || '',
             maxStudents: p.maxStudents, maxTeachers: p.maxTeachers,
             maxClasses: p.maxClasses, maxBranches: p.maxBranches, storageLimit: p.storageLimit,
             trialDays: p.trialDays, features: p.features
@@ -164,8 +165,9 @@ export default function PlansPage() {
                                     {[
                                         { label: 'Plan Name', key: 'name', type: 'text' },
                                         { label: 'Trial Days', key: 'trialDays', type: 'number' },
-                                        { label: 'Monthly Price (USD)', key: 'monthlyPrice', type: 'number' },
-                                        { label: 'Yearly Price (USD)', key: 'yearlyPrice', type: 'number' },
+                                        { label: 'Monthly Price (NGN)', key: 'monthlyPrice', type: 'number' },
+                                        { label: 'Yearly Price (NGN)', key: 'yearlyPrice', type: 'number' },
+                                        { label: 'Price Label (e.g. Contact Us)', key: 'priceLabel', type: 'text' },
                                     ].map((f, idx) => (
                                         <div key={idx}>
                                             <label className="block text-xs font-medium text-[var(--text-secondary)] mb-1.5">{f.label}</label>

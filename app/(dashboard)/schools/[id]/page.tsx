@@ -229,11 +229,11 @@ export default function SchoolDetailPage() {
                                     <select className={inputCls} style={inputStyle} value={editForm.planId}
                                         onChange={e => setEditForm(p => ({ ...p, planId: e.target.value }))}>
                                         <option value="">No Plan</option>
-                                        {plans.map(p => <option key={p.id} value={p.id}>{p.name} (${p.monthlyPrice}/mo)</option>)}
+                                        {plans.map(p => <option key={p.id} value={p.id}>{p.name} (₦{p.monthlyPrice}/mo)</option>)}
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-xs text-slate-400 mb-1">School Group</label>
+                                    <label className="block text-xs text-slate-400 mb-1">Branch</label>
                                     <select className={inputCls} style={inputStyle} value={editForm.groupId}
                                         onChange={e => setEditForm(p => ({ ...p, groupId: e.target.value }))}>
                                         <option value="">Independent (No Group)</option>
